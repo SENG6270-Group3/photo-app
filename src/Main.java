@@ -6,7 +6,7 @@ public class Main {
 
     private static void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame = new PhotoPrintingUI();
+        JFrame frame = new PhotoInputUI();
     }
 
     public static void main(String[] args) {
