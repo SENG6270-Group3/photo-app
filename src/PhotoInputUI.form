@@ -11,14 +11,23 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="a6654" binding="sectionsPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+      <scrollpane id="bc81b" binding="scrollPanel">
         <constraints/>
         <properties>
-          <preferredSize width="400" height="400"/>
+          <preferredSize width="415" height="400"/>
         </properties>
         <border type="none"/>
-        <children/>
-      </grid>
+        <children>
+          <grid id="d8edb" binding="sectionsPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints/>
+            <properties>
+              <preferredSize width="390" height="300"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
+      </scrollpane>
       <component id="d6ee0" class="javax.swing.JLabel">
         <constraints/>
         <properties>

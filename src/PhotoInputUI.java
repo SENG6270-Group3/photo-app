@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class PhotoInputUI extends JFrame implements ActionListener {
     private JTextField couponTextField;
     private JLabel couponLabel;
     private JComboBox deliveryComboBox;
+    private JScrollPane scrollPanel;
 
     private List<PhotoInputSection> sections;
 
@@ -101,6 +103,11 @@ public class PhotoInputUI extends JFrame implements ActionListener {
     }
 
     private void refreshScreen() {
+        int width = 390;
+        int height = sections.size() * 150;
+
+        this.sectionsPanel.setPreferredSize(new Dimension(width, height));
+
         this.revalidate();
         this.repaint();
     }
