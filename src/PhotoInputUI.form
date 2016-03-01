@@ -19,6 +19,21 @@
         <border type="none"/>
         <children/>
       </grid>
+      <component id="d6ee0" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <preferredSize width="195" height="40"/>
+          <requestFocusEnabled value="true"/>
+          <text value="Delivery"/>
+        </properties>
+      </component>
+      <component id="b4f6b" class="javax.swing.JComboBox" binding="deliveryComboBox">
+        <constraints/>
+        <properties>
+          <preferredSize width="195" height="40"/>
+          <requestFocusEnabled value="false"/>
+        </properties>
+      </component>
       <component id="1cd01" class="javax.swing.JLabel" binding="couponLabel">
         <constraints/>
         <properties>

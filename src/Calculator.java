@@ -14,8 +14,9 @@ public class Calculator {
         return 0.0;
     }
 
-    public double calculateMode2(List<PhotoInputSection> inputSections) {
-        return 0.0;
-    }
+//    public double calculateMode2(List<PhotoInputSection> inputSections) {
+//        double total = 0.00;
+//
+//    }
 
 }

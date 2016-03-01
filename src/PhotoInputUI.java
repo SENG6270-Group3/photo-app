@@ -7,6 +7,8 @@ import java.util.List;
 public class PhotoInputUI extends JFrame implements ActionListener {
 
     private Calculator calculator;
+    private SingleOptionCalculator singleOptionCalculator;
+    private MultipleOptionsCalculator multipleOptionsCalculator;
 
     private JPanel rootPanel;
     private JButton addSectionButton;
@@ -15,6 +17,7 @@ public class PhotoInputUI extends JFrame implements ActionListener {
     private JButton resetButton;
     private JTextField couponTextField;
     private JLabel couponLabel;
+    private JComboBox deliveryComboBox;
 
     private List<PhotoInputSection> sections;
 
@@ -35,6 +38,11 @@ public class PhotoInputUI extends JFrame implements ActionListener {
         calculateButton.addActionListener(this);
 
         calculator = new Calculator();
+        singleOptionCalculator = new SingleOptionCalculator();
+        multipleOptionsCalculator = new MultipleOptionsCalculator();
+
+        deliveryComboBox.addItem("NEXT DAY");
+        deliveryComboBox.addItem("1-HOUR");
 
         initSections();
         setCouponVisibilityTo(true);
@@ -59,11 +67,24 @@ public class PhotoInputUI extends JFrame implements ActionListener {
     }
 
     private void calculate() {
-        if (sections.size() > 1) {
-            calculator.calculateMode2(sections);
-        } else if (sections.size() == 1) {
-            calculator.calculateMode1(sections.get(0));
+        for (PhotoInputSection section : sections) {
+            if (!section.entriesValid()) {
+                return;
+            }
         }
+
+        if (sections.size() > 1 && isSectionsDifferent()) {
+            double total = multipleOptionsCalculator.calculateMode2(sections, (String) deliveryComboBox.getSelectedItem());
+            showTotal(total);
+        } else {
+            double total = singleOptionCalculator.calculate(sections, (String) deliveryComboBox.getSelectedItem(), couponTextField.getText());
+            showTotal(total);
+        }
+    }
+
+    private void showTotal(double total) {
+        String result = String.format("%.2f", total);
+        JOptionPane.showMessageDialog(this.getRootPane(), "Your total is: $" + result);
     }
 
     private void addSection() {
@@ -109,5 +130,22 @@ public class PhotoInputUI extends JFrame implements ActionListener {
         }
 
         return true;
+    }
+
+    private boolean isSectionsDifferent() {
+        if (sections.size() == 1) {
+            return false;
+        }
+
+        PhotoInputSection firstSection = sections.get(0);
+
+        for (PhotoInputSection section : sections) {
+            if (!firstSection.getFinish().equals(section.getFinish()) ||
+                    !firstSection.getImageSize().equals(section.getImageSize())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

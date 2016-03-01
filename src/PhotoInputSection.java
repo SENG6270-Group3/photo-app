@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class PhotoInputSection extends JPanel {
 
-    public enum Finish {GLOSSY, MATT}
+    public static enum Finish {GLOSSY, MATTE}
     public enum ImageSize {SMALL, MEDIUM, LARGE}
 
     private JPanel panel1;
@@ -24,8 +24,8 @@ public class PhotoInputSection extends JPanel {
         return Integer.parseInt(quantityTextField.getText());
     }
 
-    public ImageSize getImageSize() {
-        return (ImageSize) sizeComboBox.getSelectedItem();
+    public String getImageSize() {
+        return (String) sizeComboBox.getSelectedItem();
     }
 
     public Finish getFinish() {
@@ -33,12 +33,12 @@ public class PhotoInputSection extends JPanel {
     }
 
     private void initComboBoxItems() {
-        sizeComboBox.addItem(ImageSize.SMALL);
-        sizeComboBox.addItem(ImageSize.MEDIUM);
-        sizeComboBox.addItem(ImageSize.LARGE);
+        sizeComboBox.addItem("4x6");
+        sizeComboBox.addItem("5x7");
+        sizeComboBox.addItem("8x10");
 
-        finishComboBox.addItem(Finish.MATT);
         finishComboBox.addItem(Finish.GLOSSY);
+        finishComboBox.addItem(Finish.MATTE);
     }
 
     public boolean entriesValid() {
